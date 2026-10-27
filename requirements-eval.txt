@@ -1,0 +1,4 @@
+# Optional: LLM-based RAG evaluation (install on top of requirements.txt)
+ragas>=0.2.0
+deepeval>=1.0.0
+datasets>=2.19.0

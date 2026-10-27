@@ -1,5 +1,6 @@
 from src.core.enums import SourceType
 from src.ingestion.base import BaseLoader
+from src.ingestion.loaders.email_loader import EmailLoader
 from src.ingestion.loaders.file_loader import FileLoader
 from src.ingestion.loaders.image_loader import ImageLoader
 from src.ingestion.loaders.url_loader import UrlLoader
@@ -14,6 +15,7 @@ LOADERS: dict[SourceType, BaseLoader] = {
     SourceType.ZIP: ZipLoader(),
     SourceType.IMAGE: ImageLoader(),
     SourceType.VIDEO: VideoLoader(),
+    SourceType.EMAIL: EmailLoader(),
 }
 
 

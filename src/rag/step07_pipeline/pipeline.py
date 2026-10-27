@@ -7,9 +7,10 @@ from src.core.config import get_settings
 from src.db.models import ChunkORM, DocumentORM, QueryLogORM
 from src.domain.models import RAGResponse
 from src.metrics.prometheus import CHUNK_COUNT
-from src.rag.step02_chunk.chunker import TextChunker
+from src.rag.step02_chunk.chunk_strategies import ChunkStrategy, get_chunker
 from src.rag.step03_embed.embedder import Embedder
 from src.rag.step04_store.vector_store import VectorStore
+from src.rag.step05_retrieve.lexical_index import get_lexical_index
 from src.rag.step05_retrieve.retriever import Retriever
 from src.rag.step06_generate.generator import Generator
 
@@ -18,7 +19,7 @@ class RAGPipeline:
     def __init__(self, db: Session) -> None:
         self.db = db
         self.settings = get_settings()
-        self.chunker = TextChunker()
+        self.chunker = get_chunker(ChunkStrategy(self.settings.chunk_strategy))
         self.embedder = Embedder()
         self.vector_store = VectorStore()
         self.retriever = Retriever()
@@ -62,6 +63,10 @@ class RAGPipeline:
             documents=texts,
             metadatas=metadatas,
         )
+
+        lexical = get_lexical_index()
+        lexical.add_many(vector_ids, texts)
+        lexical.save()
 
         document.status = "indexed"
         self.db.commit()

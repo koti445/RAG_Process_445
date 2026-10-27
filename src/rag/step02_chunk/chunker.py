@@ -33,7 +33,7 @@ class TextChunker:
             content = chunk_text,
             chunk_index = index,
             token_count = len(chunk_tokens),
-            meta_data = {**metadata, "start_token": start, "end_token":end}
+            metadata={**metadata, "start_token": start, "end_token": end},
             )
             )
             

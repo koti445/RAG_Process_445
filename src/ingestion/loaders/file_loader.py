@@ -7,7 +7,7 @@ from src.ingestion.base import BaseLoader
 
 
 class FileLoader(BaseLoader):
-    SUPPORTED = {".txt", ".md", ".pdf"}
+    SUPPORTED = {".txt", ".md", ".pdf", ".docx"}
 
     def supports(self, source_type: str) -> bool:
         return source_type in {"file", "text"}
@@ -27,6 +27,25 @@ class FileLoader(BaseLoader):
                     source_type="file",
                     source_uri=str(path),
                     metadata={"file_type": suffix.lstrip(".")},
+                )
+            ]
+
+        if suffix == ".docx":
+            try:
+                from docx import Document as DocxDocument
+            except ImportError as exc:
+                raise ImportError(
+                    "Install python-docx to load .docx files: pip install python-docx"
+                ) from exc
+            doc = DocxDocument(str(path))
+            paragraphs = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+            text = "\n\n".join(paragraphs)
+            return [
+                LoadedDocument(
+                    content=text,
+                    source_type="file",
+                    source_uri=str(path),
+                    metadata={"file_type": "docx", "paragraph_count": len(paragraphs)},
                 )
             ]
 

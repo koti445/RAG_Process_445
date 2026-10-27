@@ -12,8 +12,11 @@ class EvalResult:
 
 class RAGEvaluator:
     """
-    Simple keyword-based evaluator for practice.
-    Later you can replace this with RAGAS or LLM-as-judge.
+    Simple keyword-based evaluator for practice (no API cost).
+
+    For full pipeline scoring see:
+    - python -m src.rag.step08_evaluate.run_practice_eval --mode offline
+    - RAGAS / DeepEval via --framework (optional deps)
     """
 
     def evaluate_answer(
@@ -34,8 +37,6 @@ class RAGEvaluator:
         )
 
     def precision_at_k(self, retrieved_ids: list[str], relevant_ids: set[str], k: int) -> float:
-        top_k = retrieved_ids[:k]
-        if not top_k:
-            return 0.0
-        hits = sum(1 for item_id in top_k if item_id in relevant_ids)
-        return hits / len(top_k)
+        from src.rag.step08_evaluate.retrieval_metrics import precision_at_k
+
+        return precision_at_k(retrieved_ids, relevant_ids, k)
