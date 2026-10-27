@@ -1,0 +1,18 @@
+From: orders@acme-gadgets.example
+To: customer@example.com
+Subject: Your ACME order #445 has shipped
+Date: Mon, 13 Oct 2025 10:00:00 +0530
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hello,
+
+Your order number 445 has shipped via standard delivery (5-7 business days).
+
+Item: ACME Laptop Pro 14
+Warranty: 24 months from delivery date.
+
+Track your package using link in your account.
+
+Thanks,
+ACME Orders

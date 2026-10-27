@@ -1,0 +1,65 @@
+{
+  "description": "Mock Q&A for offline metrics and optional RAGAS/DeepEval runs.",
+  "samples": [
+    {
+      "id": "q1_warranty",
+      "question": "How long is the laptop warranty?",
+      "ground_truth": "ACME laptops include a 24-month warranty from the purchase date.",
+      "expected_keywords": ["24", "month", "warranty"],
+      "relevant_chunk_ids": ["chunk_warranty"],
+      "contexts": [
+        "All ACME laptops include a 24-month warranty from the purchase date. The warranty covers manufacturing defects only."
+      ]
+    },
+    {
+      "id": "q2_returns",
+      "question": "What is the return window for unopened items?",
+      "ground_truth": "Unopened items can be returned within 30 days for a full refund.",
+      "expected_keywords": ["30", "days", "refund"],
+      "relevant_chunk_ids": ["chunk_returns"],
+      "contexts": [
+        "You may return unopened items within 30 days for a full refund. Opened items can be exchanged within 14 days."
+      ]
+    },
+    {
+      "id": "q3_password",
+      "question": "How do I reset my password?",
+      "ground_truth": "Use Forgot password on the login page and follow the email link.",
+      "expected_keywords": ["forgot", "password", "email"],
+      "relevant_chunk_ids": ["chunk_password"],
+      "contexts": [
+        "To reset your ACME account password, open the login page, click Forgot password, and follow the email link."
+      ]
+    },
+    {
+      "id": "ent_hr_leave",
+      "question": "How many days of annual leave do full-time employees get?",
+      "ground_truth": "Full-time employees receive 20 days of paid annual leave per calendar year.",
+      "expected_keywords": ["20", "annual", "leave"],
+      "relevant_chunk_ids": ["hr_leave"],
+      "contexts": [
+        "Full-time employees receive 20 days of paid annual leave per calendar year."
+      ]
+    },
+    {
+      "id": "ent_it_vpn",
+      "question": "How do I request VPN access?",
+      "ground_truth": "Request VPN via the ServiceNow catalog item Remote Access — VPN.",
+      "expected_keywords": ["vpn", "servicenow"],
+      "relevant_chunk_ids": ["it_vpn"],
+      "contexts": [
+        "Request VPN access via the ServiceNow catalog item Remote Access — VPN."
+      ]
+    },
+    {
+      "id": "ent_it_sla",
+      "question": "What is the response SLA for a SEV-1 incident?",
+      "ground_truth": "SEV-1 production down incidents have a 15 minute response SLA.",
+      "expected_keywords": ["15", "sev-1", "minutes"],
+      "relevant_chunk_ids": ["it_sla"],
+      "contexts": [
+        "SEV-1 Production down Response SLA 15 minutes Resolution target 4 hours"
+      ]
+    }
+  ]
+}

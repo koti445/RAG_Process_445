@@ -27,11 +27,19 @@ class VectorStore:
             metadatas=metadatas,
         )
 
-    def search(self, query_embedding: list[float], top_k: int) -> dict:
-        return self.collection.query(
-            query_embeddings=[query_embedding],
-            n_results=top_k,
-        )
+    def search(
+        self,
+        query_embedding: list[float],
+        top_k: int,
+        where: dict | None = None,
+    ) -> dict:
+        kwargs: dict = {
+            "query_embeddings": [query_embedding],
+            "n_results": top_k,
+        }
+        if where:
+            kwargs["where"] = where
+        return self.collection.query(**kwargs)
 
     def delete(self, ids: list[str]) -> None:
         if ids:

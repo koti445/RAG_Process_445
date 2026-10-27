@@ -1,0 +1,16 @@
+{
+  "description": "Example metadata fields enterprises attach to chunks for filtering and governance.",
+  "fields": {
+    "document_id": "UUID of source document in Postgres",
+    "department": "hr | it | legal | sales",
+    "classification": "public | internal | confidential",
+    "source_type": "file | url | email",
+    "effective_date": "ISO date when policy applies",
+    "parent_id": "Parent chunk id when using parent-child indexing",
+    "chunk_role": "parent | child"
+  },
+  "chromadb_filter_example": {
+    "department": "it",
+    "classification": "internal"
+  }
+}

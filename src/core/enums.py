@@ -9,6 +9,7 @@ class SourceType(str, enum.Enum):
     IMAGE = "image"
     VIDEO = "video"
     TEXT = "text"
+    EMAIL = "email"
     
 
 class IngestionStatus(str, enum.Enum):

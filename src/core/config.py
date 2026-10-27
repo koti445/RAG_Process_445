@@ -24,6 +24,11 @@ class Settings(BaseSettings):
     chunk_size: int = 500
     chunk_overlap: int = 50
     top_k: int = 5
+    chunk_strategy: str = "token"
+    rerank_mode: str = "none"
+    rerank_cross_encoder_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    retrieval_mode: str = "vector"
+    use_query_transform: bool = True
     chroma_persist_dir: str = "./data/chroma"
     
     max_upload_mb: int = 50
